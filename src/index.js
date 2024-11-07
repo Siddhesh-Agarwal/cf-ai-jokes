@@ -11,7 +11,7 @@ export default {
 
     try {
       let response = await env.AI.run('@hf/google/gemma-7b-it', simple);
-      return Response.json({ topic: topic, response });
+      return Response.json({ topic: topic, ...response });
     } catch (error) {
       return Response.json({
         error: 'Failed to generate joke',
