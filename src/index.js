@@ -1,7 +1,5 @@
 export default {
   async fetch(request, env) {
-    const tasks = [];
-
     // Get the topic from URL parameters
     const url = new URL(request.url);
     const topic = url.searchParams.get('topic') || 'Programming'; // Default to 'general' if no topic provided
@@ -13,8 +11,7 @@ export default {
 
     try {
       let response = await env.AI.run('@hf/google/gemma-7b-it', simple);
-      tasks.push({ topic: topic, response });
-      return Response.json(tasks);
+      return Response.json({ topic: topic, response });
     } catch (error) {
       return Response.json({
         error: 'Failed to generate joke',
