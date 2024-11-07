@@ -13,7 +13,7 @@ export default {
 
     try {
       let response = await env.AI.run('@hf/google/gemma-7b-it', simple);
-      tasks.push({ inputs: simple, response });
+      tasks.push({ topic: topic, response });
       return Response.json(tasks);
     } catch (error) {
       return Response.json({
